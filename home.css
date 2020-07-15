@@ -1,0 +1,15 @@
+.text-center{
+    text-align: center !important
+}
+.red {
+    background-color: red !important;
+    color: white !important;
+}
+.blue {
+    background-color: blue !important;
+    color: white !important;
+}
+.green {
+    background-color: forestgreen !important;
+    color: black !important;
+}
