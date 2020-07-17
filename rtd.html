@@ -1,11 +1,203 @@
-﻿<!DOCTYPE html>
-<html>
+﻿
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <title></title>
-    <script src="rtd.js"></script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Real time display</title>
+    <script src="libs/jquery.min.js"></script>
+    <link href="semantic-ui/semantic.min.2.7.8.css" rel="stylesheet" />
+    <script src="semantic-ui/semantic.min.2.7.8.js"></script>
+
+    <script src="vue/vue.min.js"></script>
+    <script src="vue/vue-router.min.js"></script>
+
+    <link href="rtd.css" rel="stylesheet" />
+
 </head>
+
 <body>
+    <!-- sidebar -->
+    <div class="ui sidebar inverted vertical menu sidebar-menu" id="sidebar">
+        <div class="item">
+            <div class="header">General</div>
+            <div class="menu">
+                <a class="item">
+                    <div>
+                        <i class="icon tachometer alternate"></i>
+                        Dashboard
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="item">
+            <div class="header">
+                Administration
+            </div>
+            <div class="menu">
+                <a class="item">
+                    <div><i class="cogs icon"></i>Settings</div>
+                </a>
+                <a class="item">
+                    <div><i class="users icon"></i>Team</div>
+                </a>
+            </div>
+        </div>
+
+        <a href="#" class="item">
+            <div>
+                <i class="icon chart line"></i>
+                Charts
+            </div>
+        </a>
+
+        <a class="item">
+            <div>
+                <i class="icon lightbulb"></i>
+                Apps
+            </div>
+        </a>
+        <div class="item">
+            <div class="header">Other</div>
+            <div class="menu">
+                <a href="#" class="item">
+                    <div>
+                        <i class="icon envelope"></i>
+                        Messages
+                    </div>
+                </a>
+
+                <a href="#" class="item">
+                    <div>
+                        <i class="icon calendar alternate"></i>
+                        Calendar
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <div class="item">
+            <form action="#">
+                <div class="ui mini action input">
+                    <input type="text" placeholder="Search..." />
+                    <button class="ui mini icon button">
+                        <i class=" search icon"></i>
+                    </button>
+                </div>
+            </form>
+        </div>
+        <div class="ui segment inverted">
+            <div class="ui tiny olive inverted progress">
+                <div class="bar" style="width: 54%"></div>
+                <div class="label">Monthly Bandwidth</div>
+            </div>
+
+            <div class="ui tiny teal inverted progress">
+                <div class="bar" style="width:78%"></div>
+                <div class="label">Disk Usage</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- sidebar -->
+    <!-- top nav -->
+
+    <nav class="ui top fixed inverted menu">
+        <div class="left menu">
+            <a href="#" class="sidebar-menu-toggler item" data-target="#sidebar">
+                <i class="sidebar icon"></i>
+            </a>
+            <a href="#" class="header item">
+                Semantic UI
+            </a>
+        </div>
+
+        <div class="right menu">
+            <a href="#" class="item">
+                <i class="bell icon"></i>
+            </a>
+            <div class="ui dropdown item">
+                <i class="user cirlce icon"></i>
+                <div class="menu">
+                    <a href="#" class="item">
+                        <i class="info circle icon"></i> Profile
+                    </a>
+                    <a href="#" class="item">
+                        <i class="wrench icon"></i>
+                        Settings
+                    </a>
+                    <a href="#" class="item">
+                        <i class="sign-out icon"></i>
+                        Logout
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- top nav -->
+
+
+    <div class="pusher" id="data_rtd">
+        <div class="main-content">
+            <!--<h2 class="ui dividing header">Content<a class="anchor" id="content"></a></h2>-->
+            <div class="ui grid stackable padded">
+                <div class="column">
+                    <table class="ui celled striped table selectable">
+                        <thead>
+                            <tr>
+                                <th colspan="13">
+                                    REAL TIME DISPLAY
+                                </th>
+                            </tr>
+                            <tr>
+                                <th>STT</th>
+                                <th>VỊ TRÍ</th>
+                                <th>Mã NV</th>
+                                <th>Tên NV</th>
+                                <th>Mã SP</th>
+                                <th>Mã TP</th>
+                                <th>Thực hiện</th>
+                                <th>TG bắt đầu</th>
+                                <th>TG kết thúc</th>
+                                <th>Size</th>
+                                <th>Màu sắc</th>
+                                <th>Số lượng</th>
+                                <th>tỷ lê</th>
+                            </tr>
+
+                        </thead>
+                        <tbody>
+
+                            <tr v-for="(row, rindex) in ResultItems"@click="fn_rowItemClick($event, row, rindex)" >
+
+                                <td>{{rindex + 1}}</td>
+                                <td>{{row.place_code }}</td>
+                                <td>{{row.operator_code }}</td>
+                                <td>{{row.operator_name }}</td>
+                                <td>{{row.product_code }}</td>
+                                <td>{{row.item_code }}</td>
+                                <td>
+                                    <!--thumbs up icon-->
+                                    <div class="ui icon"><i v-if="row.state  ==1" class="icon checkmark"></i> </div>
+                                </td>
+                                <td>{{row.start_time }}</td>
+                                <td>{{row.end_time }}</td>
+                                <td>{{row.size }}</td>
+                                <td>{{row.color }}</td>
+                                <td>{{row.total_qty }}</td>
+                                <td>{{row.pass_rate}}</td>
+
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <script src="rtd.js"></script>
 
 </body>
 </html>

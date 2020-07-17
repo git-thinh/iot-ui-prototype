@@ -1,9 +1,8 @@
-﻿
-// load dat from home.json
+﻿// load dat from home.json
 var vm = new Vue({
     el: '#databinding',
     data: {
-         line_name: "05"
+        line_name: "05"
         , current_date: "15-07-2020"
         , current_time: "15:50"
         , operators: "54"
@@ -27,22 +26,36 @@ var vm = new Vue({
         , actual_qty_time2: 246
         , actual_qty_time3: 246
         , actual_qty_time4: 246
+        
     },
     computed: {
         balance_total: function () {
-
             var _self = this;
             var final = _self.order_total_qty - _self.actual_total_qty;
-           
             return final;
         },
          balance_day: function () {
-
-
              var _self = this;
              var final = _self.order_day_qty - _self.actual_day_qty;
-
              return final;;
         }
     }
+    
 });
+
+var week = ['CHỦ NHẬT', 'THỨ HAI', 'THỨ BA', 'THỨ TƯ', 'THỨ NĂM', 'THỨ SÁU', 'THỨ BẢY'];
+var timerID = setInterval(updateTime, 1000);
+updateTime();
+function updateTime() {
+    var cd = new Date();
+    vm.current_time = zeroPadding(cd.getHours(), 2) + ':' + zeroPadding(cd.getMinutes(), 2) + ':' + zeroPadding(cd.getSeconds(), 2);
+    vm.current_date = zeroPadding(cd.getDate(), 2) + '-' + zeroPadding(cd.getMonth() + 1, 2) + '-' + zeroPadding(cd.getFullYear(), 4) 
+};
+
+function zeroPadding(num, digit) {
+    var zero = '';
+    for (var i = 0; i < digit; i++) {
+        zero += '0';
+    }
+    return (zero + num).slice(-digit);
+}
