@@ -8,7 +8,7 @@ var app = new Vue({
     },
     mounted: function () {
         var _self = this;
-        var obj = fetch("rtd.json")
+        var obj = fetch("rth.json")
             .then(response => response.json())
             .then(jsonResponse => _self.ResultItems = jsonResponse);
         $('#example1').calendar({
