@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Real time display</title>
+    <title>RTQ</title>
     <script src="libs/jquery.min.js"></script>
     <link href="semantic-ui/semantic.min.2.7.8.css" rel="stylesheet" />
     <script src="semantic-ui/semantic.min.2.7.8.js"></script>
@@ -13,7 +13,7 @@
     <script src="vue/vue.min.js"></script>
     <script src="vue/vue-router.min.js"></script>
 
-    <link href="rth.css" rel="stylesheet" />
+    <link href="rtq.css" rel="stylesheet" />
     <link rel="stylesheet" href="css/style.css" />
 
 </head>
@@ -45,19 +45,7 @@
             </div>
         </div>
 
-        <!-- <a href="#" class="item">
-            <div>
-                <i class="icon chart line"></i>
-                Charts
-            </div>
-        </a>
-
-        <a class="item">
-            <div>
-                <i class="icon lightbulb"></i>
-                Apps
-            </div>
-        </a> -->
+    
         <div class="item">
             <div class="header">Other</div>
             <div class="menu">
@@ -152,39 +140,29 @@
                             <form class="ui form">
 
 
-                                <div class="fields">
-                                    <div class="five wide field">
-                                        <span style="padding-top:10px">Display Date</span>
-                                    </div>
-                                    <div class="eleven wide field">
-                                        <div class="ui calendar" id="example1">
-                                            <div class="ui input left icon">
-                                                <i class="calendar icon"></i>
-                                                <input type="text" placeholder="Date/Time">
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div>
                                 <div class="field">
-                                    <div class="fields">
-                                        <div class="five wide field">
-                                            <div class="ui toggle checkbox">
+                                    
+                                        <div class="wide field">
+                                            <div class="ui checkbox">
                                                 <input type="checkbox" name="gift" tabindex="0">
-                                                <label>By Style</label>
+                                                <label>Show station with quantity greater than  </label>
                                             </div>
                                         </div>
-                                        <div class="eleven wide field">
-                                            <select class="ui fluid dropdown">
-                                                <option value="">State</option>
-                                                <option value="AL">Alabama</option>
-                                                <option value="AK">Alaska</option>
-                                                
-                                            </select>
-                                        </div>
-                                    </div>
+                                        
+                                    
                                 </div>
 
+                                <div class="field">
+                                   
+                                        <div class="wide field">
+                                            <div class="ui checkbox">
+                                                <input type="checkbox" name="gift" tabindex="0">
+                                                <label>show station with quantity less than</label>
+                                            </div>
+                                        </div>
+                                        
+                                   
+                                </div>
 
                             </form>
                         </div>
@@ -198,32 +176,7 @@
                         </div>
                         <div class="content">
                             <form class="ui form">
-                                <div class="inline fields">
-
-                                    <div class="eight wide field" style="padding:9px;">
-                                        <div class="ui toggle checkbox">
-                                            <input type="checkbox" name="gift" tabindex="0">
-                                            <label>Leave 0 quantities in white</label>
-                                        </div>
-                                    </div>
-                                    <div class="eight wide field">
-                                        <div class="inline fields"><a class="ui yellow label"></a><span>Show yellow all quantities between</span></div>
-
-                                    </div>
-
-                                </div>
-                                <div class="inline fields" style="padding:9px;">
-
-                                    <div class="eight wide field" >
-                                        <div class="inline fields"><a class="ui red label"></a><span>Show in red all quantities less than or equal</span></div>
-                                    </div>
-                                    <div class="eight wide field " >
-                                        <div class="inline fields"><a class="ui green label"></a><span>Show in green all quantities greater than or equal</span></div>
-
-                                    </div>
-
-                                </div>
-
+                             
                             </form>
                         </div>
                       
@@ -237,47 +190,43 @@
                             <thead>
                                 <tr>
                                     <th colspan="13">
-                                        REAL TIME HOURLY
+                                        RTQ
                                     </th>
                                 </tr>
                                 <tr>
-                                    <th>STT</th>
-                                    <th>VỊ TRÍ</th>
-                                    <th>Mã NV</th>
-                                    <th>Tên NV</th>
-                                    <th>Mã SP</th>
-                                    <th>Mã TP</th>
-                                    <th>Thực hiện</th>
-                                    <th>TG bắt đầu</th>
-                                    <th>TG kết thúc</th>
-                                    <th>Size</th>
-                                    <th>Màu sắc</th>
-                                    <th>Số lượng</th>
-                                    <th>tỷ lê</th>
+                                    <th style="width:30px;">STT</th>
+                                    <th style="width:120px;">STATION</th>
+                                    <th style="width:90px;">QTY</th>
+                                    <th ></th>
+                                    
+                                  
                                 </tr>
-
+    
                             </thead>
                             <tbody>
-
-                                <tr v-for="(row, rindex) in ResultItems" @click="fn_rowItemClick($event, row, rindex)">
-
+    
+                                <tr v-for="(row, rindex) in ResultItems"@click="fn_rowItemClick($event, row, rindex)" >
+    
                                     <td>{{rindex + 1}}</td>
                                     <td>{{row.place_code }}</td>
-                                    <td>{{row.operator_code }}</td>
-                                    <td>{{row.operator_name }}</td>
-                                    <td>{{row.product_code }}</td>
-                                    <td>{{row.item_code }}</td>
-                                    <td>
-                                        <!--thumbs up icon-->
-                                        <div class="ui icon"><i v-if="row.state  ==1" class="icon checkmark"></i> </div>
+                                    <td>{{row.qty }}</td>
+                                   
+                                    <td><div class="ui progress warning">
+                                        <div class="bar" >
+                                            <div class="progress"></div>
+                                        </div>
+                                      </div></td>
+                                    <!-- <td  v-bind:class="{ : isActive }">
+                                       v-bind:style="{color: row.color, width: row.percent + '%' }"
+                                       
                                     </td>
                                     <td>{{row.start_time }}</td>
                                     <td>{{row.end_time }}</td>
                                     <td>{{row.size }}</td>
                                     <td>{{row.color }}</td>
                                     <td>{{row.total_qty }}</td>
-                                    <td>{{row.pass_rate}}</td>
-
+                                    <td>{{row.pass_rate}}</td> -->
+    
                                 </tr>
                             </tbody>
                         </table>
@@ -286,7 +235,7 @@
 
             </div>
     </div>
-    <script src="rth.js"></script>
+    <script src="/rtq.js"></script>
     <script src="/js/script.js"></script>
 </body>
 </html>
