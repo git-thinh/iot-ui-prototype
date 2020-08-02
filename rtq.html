@@ -134,7 +134,7 @@
                 <div class="six wide computer eight wide tablet sixteen wide mobile column">
                     <div class="ui fluid card">
                         <div class="content">
-                            <div class="header">Selection</div>
+                            <div class="header">Filter Option</div>
                         </div>
                         <div class="content">
                             <form class="ui form">
@@ -142,7 +142,7 @@
 
                                 <div class="field">
                                     
-                                        <div class="wide field">
+                                        <div class="ui wide field">
                                             <div class="ui checkbox">
                                                 <input type="checkbox" name="gift" tabindex="0">
                                                 <label>Show station with quantity greater than  </label>
@@ -176,7 +176,42 @@
                         </div>
                         <div class="content">
                             <form class="ui form">
-                             
+                               <div class="field">
+                                <div class="fields">
+                                    <div class="fourteen wide field">
+                                        <div class="inline fields"><a class="ui green label"></a><span>Show in red all quantities less than or equal</span></div>
+                                    </div>
+                                    <div class="two wide field ui input focus">
+                                       
+                                            <input type="text" placeholder="0">
+                                         
+                                    </div>
+                                </div>
+                               </div>
+                               <div class="field">
+                                <div class="fields">
+                                    <div class="fourteen wide field">
+                                        <div class="inline fields"><a class="ui yellow label"></a><span>Show in red all quantities less than or equal</span></div>
+                                    </div>
+                                    <div class="two wide field input focus">
+                                       
+                                            <input type="text" placeholder="0">
+                                         
+                                    </div>
+                                </div>
+                               </div>
+                               <div class="field">
+                                <div class="fields">
+                                    <div class="fourteen wide field">
+                                        <div class="inline fields"><a class="ui red label"></a><span>Show in red all quantities less than or equal</span></div>
+                                    </div>
+                                    <div class="two wide field ui input focus">
+                                       
+                                            <input type="text" placeholder="0">
+                                         
+                                    </div>
+                                </div>
+                               </div>
                             </form>
                         </div>
                       
@@ -211,11 +246,15 @@
                                     <td>{{row.place_code }}</td>
                                     <td>{{row.qty }}</td>
                                    
-                                    <td><div class="ui progress warning">
-                                        <div class="bar" >
-                                            <div class="progress"></div>
+                                    <td>
+                                        <div class="ui" style="width: 100%;" >
+                                        <div class="ui progress " v-bind:style="{background: row.color, width: row.percent + '%' }">
+                                                <div class="bar"  ></div>
+                                                
+                                              </div>
                                         </div>
-                                      </div></td>
+                                        
+                                    </td>
                                     <!-- <td  v-bind:class="{ : isActive }">
                                        v-bind:style="{color: row.color, width: row.percent + '%' }"
                                        

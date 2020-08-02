@@ -8,7 +8,7 @@
   {
     "place_code": "1",
     "qty":891,
-    "color": "yellow",
+    "color": "#fbbd08",
     "percent": 30
   },
   {
@@ -20,7 +20,7 @@
   {
     "place_code": "2",
     "qty":891,
-    "color": "red",
+    "color": "green",
     "percent": 10
   },
   {
@@ -32,19 +32,19 @@
   {
     "place_code": "2",
     "qty":891,
-    "color": "yellow",
+    "color": "#fbbd08",
     "percent": 100
   },
   {
     "place_code": "2",
     "qty":891,
-    "color": "yellow",
+    "color": "#fbbd08",
     "percent": 50
   },
   {
     "place_code": "2",
     "qty":891,
-    "color": "yellow",
+    "color": "#fbbd08",
     "percent": 50
   }
 ]
