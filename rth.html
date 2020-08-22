@@ -6,7 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Real time display</title>
-    <script src="libs/jquery.min.js"></script>
+    
+    <!-- <script src="libs/jquery.min.js"></script> -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="libs/jquery-simple-tree-table.js"></script>
+
     <link href="semantic-ui/semantic.min.2.7.8.css" rel="stylesheet" />
     <script src="semantic-ui/semantic.min.2.7.8.js"></script>
 
@@ -233,51 +237,45 @@
             </div>
                 <div class="ui grid stackable padded">
                     <div class="column">
-                        <table class="ui celled striped table selectable">
+                        <table class="ui celled striped table selectable simple-tree-table" id="basic">
                             <thead>
                                 <tr>
-                                    <th colspan="13">
+                                    <th colspan="26">
                                         REAL TIME HOURLY
                                     </th>
                                 </tr>
                                 <tr>
-                                    <th>STT</th>
+                                    <th>Employee</th>
                                     <th>VỊ TRÍ</th>
-                                    <th>Mã NV</th>
-                                    <th>Tên NV</th>
-                                    <th>Mã SP</th>
-                                    <th>Mã TP</th>
-                                    <th>Thực hiện</th>
-                                    <th>TG bắt đầu</th>
-                                    <th>TG kết thúc</th>
-                                    <th>Size</th>
-                                    <th>Màu sắc</th>
-                                    <th>Số lượng</th>
-                                    <th>tỷ lê</th>
+                                    <th>1 AM</th>
+                                    <th>2 AM</th>
+                                    <th>3 AM</th>
+                                    <th>4 AM</th>
+                                    <th>5 AM</th>
+                                    <th>6 AM</th>
+                                    <th>7 AM</th>
+                                    <th>8 AM</th>
+                                    <th>9 AM</th>
+                                    <th>10 AM</th>
+                                    <th>11 AM</th>
+                                    <th>12 AM</th>
+                                    <th>1 PM</th>
+                                    <th>2 PM</th>
+                                    <th>3 PM</th>
+                                    <th>4 PM</th>
+                                    <th>5 PM</th>
+                                    <th>6 PM</th>
+                                    <th>7 PM</th>
+                                    <th>8 PM</th>
+                                    <th>9 PM</th>
+                                    <th>10 PM</th>
+                                    <th>11 PM</th>
+                                    <th>Total</th>
                                 </tr>
-
                             </thead>
                             <tbody>
-
-                                <tr v-for="(row, rindex) in ResultItems" @click="fn_rowItemClick($event, row, rindex)">
-
-                                    <td>{{rindex + 1}}</td>
-                                    <td>{{row.place_code }}</td>
-                                    <td>{{row.operator_code }}</td>
-                                    <td>{{row.operator_name }}</td>
-                                    <td>{{row.product_code }}</td>
-                                    <td>{{row.item_code }}</td>
-                                    <td>
-                                        <!--thumbs up icon-->
-                                        <div class="ui icon"><i v-if="row.state  ==1" class="icon checkmark"></i> </div>
-                                    </td>
-                                    <td>{{row.start_time }}</td>
-                                    <td>{{row.end_time }}</td>
-                                    <td>{{row.size }}</td>
-                                    <td>{{row.color }}</td>
-                                    <td>{{row.total_qty }}</td>
-                                    <td>{{row.pass_rate}}</td>
-
+                                <tr v-for="(row, rindex) in ResultItems">
+                                    <td>{{row.operator_name}}</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -286,7 +284,16 @@
 
             </div>
     </div>
+    
     <script src="rth.js"></script>
     <script src="/js/script.js"></script>
+    <!-- <script>
+        $('#basic').simpleTreeTable({
+          expander: $('#expander'),
+          collapser: $('#collapser'),
+          store: 'session',
+          storeKey: 'simple-tree-table-basic'
+        });
+    </script> -->
 </body>
 </html>

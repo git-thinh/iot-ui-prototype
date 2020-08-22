@@ -39,7 +39,6 @@ var app = new Vue({
     methods: {
         fn_rowItemClick: function (event, row, rindex) {
             var _self = this;
-            console.log(row);
         }, fn_date_format: function (date) {
             if (!date) return '';
             var day = date.getDate() + '';
