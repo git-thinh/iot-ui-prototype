@@ -5,19 +5,22 @@ var app = new Vue({
     data: {
         title: "RTQ",
         min_val: 20,
-        between_val: "6-29",
+        between_val: "21-39",
         max_val: 40,
         ResultItems: {},
     },
     mounted: function () {
         var _self = this;
-        var obj = fetch("rtq.json")
-            .then(response => response.json())
-            .then(jsonResponse => _self.ResultItems = jsonResponse);
-
-        for (index = 0; index < _self.ResultItems.length; ++index) {
-            _self.fn_change_item(_self.ResultItems[index], _self.min_val, _self.max_val)
-        }
+        _self.open_json_file();
+    
+        // var obj = fetch("rtq.json")
+        //     .then(response => response.json())
+        //     .then(jsonResponse => _self.ResultItems = jsonResponse);
+        // console.log(obj);    
+        // for (index = 0; index < _self.ResultItems.length; ++index) {
+        //     console.log(index);
+        //     _self.fn_change_item(_self.ResultItems[index], _self.min_val, _self.max_val)
+        // }
     },
     watch: {
         innerModel: function (value) {
@@ -49,16 +52,76 @@ var app = new Vue({
                 return true;
             }
         },
-        fn_change_item:function(item, _min, _max) {
-            if (item.percent < _min) {
+        fn_change_item: function (item, _min, _max) {
+            console.log(item);
+            console.log(_min);
+            if (item.percent <= _min) {
                 item.color = "green";
             } else if (item.percent >= _max) {
                 item.color = "red";
             } else {
                 item.color = "#fbbd08";
             }
-         }
+            console.log(item);
+
+        },
+        open_json_file:function () {
+           var _self = this;
+            var xmlhttp = new XMLHttpRequest();
+            var url = "rtq.json";
+            xmlhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    var myArr = JSON.parse(this.responseText);
+                    _self.myFunction(myArr);
+                }
+            };
+            xmlhttp.open("GET", url, true);
+            xmlhttp.send();
+        },
+        myFunction :function (arr) {
+            var _self = this;
+            
+            var out = "";
+            var i;
+            for(i = 0; i < arr.length; i++) {
+               console.log(arr[i]);
+               _self.fn_change_item(arr[i],_self.min_val,_self.max_val);
+            }
+            _self.ResultItems = arr;
+          
+        }
+       
     }
 });
 
 
+// function open_json_file () {
+           
+   
+
+//     var xmlhttp = new XMLHttpRequest();
+//     var url = "rtq.json";
+//     xmlhttp.onreadystatechange = function() {
+//         if (this.readyState == 4 && this.status == 200) {
+//             var myArr = JSON.parse(this.responseText);
+//             myFunction(myArr);
+//         }
+//     };
+
+
+   
+//     xmlhttp.open("GET", url, true);
+//     xmlhttp.send();
+
+  
+    
+   
+// }
+// function myFunction(arr) {
+//     var out = "";
+//     var i;
+//     for(i = 0; i < arr.length; i++) {
+//        console.log(arr[i])
+//     }
+  
+// }
